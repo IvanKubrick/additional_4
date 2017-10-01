@@ -1,27 +1,28 @@
 module.exports = function multiply(a, b) {
 	a = a.split('').reverse();
 	b = b.split('').reverse();
-	var arr = [];
+	var arr = [],
+		a_length = a.length,
+		b_length = b.length;
 
-	for (var i = 0; i < a.length; i++) {
+	for (var i = 0; i < a_length; i++) {
 		for (var j = 0; j < b.length; j++) {
-			if (!arr[i+j]) {
-				arr[i+j] = 0;
+			if (!arr[i + j]) {
+				arr[i + j] = 0;
 			}
-			arr[i+j] += a[i] * b[j]
+			arr[i + j] += a[i] * b[j]
 		}
 	}
-	
-	for (var i = 0; i < arr.length; i++) {
+
+	var arr_length = arr.length;
+	for (var i = 0; i < arr_length; i++) {
 		if (arr[i] > 9) {
-			if (!arr[i+1]) {
-				arr[i+1] = 0;
+			if (!arr[i + 1]) {
+				arr[i + 1] = 0;
 			}
-			arr[i+1] += parseInt(arr[i] / 10);
+			arr[i + 1] += Math.floor(arr[i] / 10);
 			arr[i] = arr[i] % 10;
 		}
 	}
-
-	var str = arr.reverse().join('');
-	return str;
+	return arr.reverse().join('');
 }
